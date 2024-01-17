@@ -1,11 +1,18 @@
 'use client';
 import { useState } from 'react';
-import Header from './components/Header';
+import Navbar from './components/Navbar';
 import PresetIVsButton from './components/PresetIVsButton'
 import IVsDropdown from './components/IVsDropdown'
 import IVsTable from './components/IVsTable';
+import { useEffect } from 'react';
+
 
 export default function Home() {
+
+    // importing bootstrap js
+    useEffect(()=>{
+        import("bootstrap/dist/js/bootstrap");
+    },[])
 
     const [ATK, setATK] = useState(0);
     const [DEF, setDEF] = useState(0);
@@ -18,12 +25,9 @@ export default function Home() {
     }
     
     return (
-        <div>
-            <Header />
+        <>
+            <Navbar />
             <main>
-                <div>
-                    Title: Pokemon GO IV Probability Calculator
-                </div>
                 <div>
                     IV Floor Presets
                     <PresetIVsButton text={'Wild 0/0/0'} onClick={() => handlePresetIVsButtonClick(0, 0, 0)} />
@@ -47,6 +51,6 @@ export default function Home() {
                     <IVsTable />
                 </div>
             </main>
-        </div>
+        </>
     )
 }
