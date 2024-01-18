@@ -2,7 +2,7 @@
 export default function IVsTable({ floor }) {
     
     const IVsTotalTip = 'Pokemon stats (ATK/DEF/HP) can have 15 IVs each, maxing out at a total of 45 IVs.';
-    const cumulativeProbabilityTip = 'The chance of obtaining a Pokemon with at least this amount of total IVs.';
+    const cumulativeProbabilityTip = 'The chance of obtaining a Pokemon with the total IVs or higher.';
 
     return (
         <>
@@ -11,14 +11,14 @@ export default function IVsTable({ floor }) {
                     <tr>
                         <th scope="col">Appraisal Star</th>
                         <th scope="col">
-                            <div class="d-flex justify-content-between">
+                            <div className="d-flex justify-content-between">
                                 <div></div>
                                 IVs Total
                                 <i className="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title={IVsTotalTip}></i>
                             </div>
                         </th>
                         <th scope="col">
-                            <div class="d-flex justify-content-between">
+                            <div className="d-flex justify-content-between">
                                 <div></div>
                                 Cumulative Probability %
                                 <i className="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title={cumulativeProbabilityTip}></i>
