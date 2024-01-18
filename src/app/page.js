@@ -1,10 +1,10 @@
 'use client';
 import { useState } from 'react';
+import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import PresetIVsButton from './components/PresetIVsButton'
 import IVsSelector from './components/IVsSelector'
 import IVsTable from './components/IVsTable';
-import { useEffect } from 'react';
 
 
 export default function Home() {
@@ -34,6 +34,8 @@ export default function Home() {
     const [tableIcon, setTableIcon] = useState('');
     const [tableTitle, setTableTitle] = useState('');
 
+    // Auto-complete the selector with preset IVs after clicking button and
+    // change table icon and table title to corresponding preset
     function handlePresetIVsButtonClick(presetIV) {
         setATK(presetIV.floor[0]);
         setDEF(presetIV.floor[1]);
@@ -102,7 +104,7 @@ export default function Home() {
                             </div>
                         </div>
 
-                        <div className="row justify-content-center mt-2 mb-1">
+                        <div className="row justify-content-center mt-4 mb-1">
                             <div className="col-auto mb-1">
                                 <img src={tableIcon} height='35'/>
                             </div>
@@ -111,7 +113,7 @@ export default function Home() {
                             </div>
                         </div>
                         <div className="row justify-content-center mb-1">
-                            <IVsTable />
+                            <IVsTable ATK={ATK} DEF={DEF} HP={HP} />
                         </div>
                     </div>
                 </div>

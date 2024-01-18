@@ -6,6 +6,8 @@ export default function IVsSelector({ IV, setIV, setTableIcon, setTableTitle }) 
         options.push(<option key={i} value={i} >{i}</option>);
     }
 
+    // Allow user to customize IVs in selector and
+    // change table icon and table icon to indicate customization
     function handleChange(e) {
         setIV(e.target.value);
         setTableIcon('unownQuestionMark.png');
