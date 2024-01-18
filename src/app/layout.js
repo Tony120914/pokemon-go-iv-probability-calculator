@@ -7,7 +7,8 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
     title: 'Pokemon GO IV Probability Calculator',
-    description: 'Finds the probability of obtaining a Pokemon above a certain amount of IVs.',
+    description: 'Calculates the probability of obtaining a Pokemon given an IV floor in Pokemon GO.',
+    keywords: 'pokemon go, iv, probability, calculator, floor',
 }
 
 export default function RootLayout({ children }) {

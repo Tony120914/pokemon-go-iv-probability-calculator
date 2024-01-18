@@ -12,7 +12,7 @@ export default function IVsSelector({ position, floor, setFloor, setTableIcon, s
         let floorCustom = [floor[0], floor[1], floor[2]];
         floorCustom[position] = parseInt(e.target.value);
         setFloor(floorCustom);
-        setTableIcon('unownQuestionMark.png');
+        setTableIcon('icons/unownQuestionMark.png');
         setTableTitle('Custom');
     }
     
