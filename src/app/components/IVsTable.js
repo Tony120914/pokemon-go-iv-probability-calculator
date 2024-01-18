@@ -1,5 +1,5 @@
 
-export default function IVsTable({ ATK, DEF, HP }) {
+export default function IVsTable({ floor }) {
 
     return (
         <>
@@ -13,7 +13,7 @@ export default function IVsTable({ ATK, DEF, HP }) {
                     </tr>
                 </thead>
                 <tbody className='table-group-divider'>
-                    {IVsCombinationProbabilityRow([ATK, DEF, HP])}
+                    {IVsCombinationProbabilityRow(floor)}
                 </tbody>
             </table>
         </>
@@ -21,6 +21,10 @@ export default function IVsTable({ ATK, DEF, HP }) {
 }
 
 const IV_CAP = 15
+const STAR1 = 23;
+const STAR2 = 30;
+const STAR3 = 37;
+const STAR4 = 45;
 
 // Count all combinations of distributing numIVs to ATK/DEF/HP with a certain floor
 function IVsCombinationCount(numIVs, floor) {
@@ -55,8 +59,9 @@ function IVsCombinationProbabilityRow(floor) {
     for (let i = 0; i < combinationCounts.length; i++) {
         cumulativeProbability += combinationCounts[i] / combinationCountSum * 100;
         let IVsTotal = IV_CAP * 3 - i;
+        let highlight = IVsTotal == STAR4 || IVsTotal == STAR3 || IVsTotal == STAR2 || IVsTotal == STAR1;
         row.push(
-            <tr key={IVsTotal}>
+            <tr key={IVsTotal} className={highlight ? 'table-active' : ''} style={highlight? {'--bs-table-bg-state':'#2f0d0d', '--bs-table-hover-bg':'#4b0c0c'} : {}}>
                 <td>{buildAppraisalStars(IVsTotal)}</td>
                 <td>{IVsTotal}</td>
                 <td>{`${Math.round(cumulativeProbability * 1000) / 1000}%`}</td>
@@ -75,16 +80,16 @@ function IVsCombinationProbabilityRow(floor) {
 // 4* = 45 IVs
 function buildAppraisalStars(IVsTotal) {
     let appraisal = 0;
-    if (IVsTotal == 45) {
+    if (IVsTotal == STAR4) {
         appraisal = 4;
     }
-    else if (IVsTotal >= 37) {
+    else if (IVsTotal >= STAR3) {
         appraisal = 3;
     }
-    else if (IVsTotal >= 30) {
+    else if (IVsTotal >= STAR2) {
         appraisal = 2;
     }
-    else if (IVsTotal >= 23) {
+    else if (IVsTotal >= STAR1) {
         appraisal = 1;
     }
 
@@ -92,6 +97,5 @@ function buildAppraisalStars(IVsTotal) {
     for (let i = 0; i < appraisal; i++) {
         stars.push(<img src='appraisalStar.png' key={i+1} height='20' />);
     }
-
     return stars;
 }

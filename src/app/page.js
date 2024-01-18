@@ -28,18 +28,14 @@ export default function Home() {
         tradeLucky : {text:'Trade (Lucky)', floor:[12,12,12], icon:'lucky.png'},
     }
 
-    const [ATK, setATK] = useState(0);
-    const [DEF, setDEF] = useState(0);
-    const [HP, setHP] = useState(0);
+    const [floor, setFloor] = useState([0,0,0]);
     const [tableIcon, setTableIcon] = useState('');
     const [tableTitle, setTableTitle] = useState('');
 
     // Auto-complete the selector with preset IVs after clicking button and
     // change table icon and table title to corresponding preset
     function handlePresetIVsButtonClick(presetIV) {
-        setATK(presetIV.floor[0]);
-        setDEF(presetIV.floor[1]);
-        setHP(presetIV.floor[2]);
+        setFloor(presetIV.floor);
         setTableIcon(presetIV.icon);
         setTableTitle(presetIV.text);
     }
@@ -50,7 +46,7 @@ export default function Home() {
             <main>
                 <div>
                     <div className="container text-center">
-                        <p className="text-center">How is the Pokemon Encountered?</p>
+                        <p className="text-center mt-4">How is the Pokemon Encountered?</p>
                         <div className="row justify-content-md-center mb-1">
                             <div className="col-md-auto mb-1">
                                 <PresetIVsButton presetIV={presetIVs.wild} onClick={() => handlePresetIVsButtonClick(presetIVs.wild)} />
@@ -91,16 +87,16 @@ export default function Home() {
                             </div>
                         </div>
 
-                        <p className="text-center mt-4">IV Floor</p>
+                        <p className="text-center mt-5">IV Floor</p>
                         <div className="row justify-content-center mb-1">
                             <div className="col-auto mb-1">
-                                <IVsSelector IV={ATK} setIV={setATK} setTableIcon={setTableIcon} setTableTitle={setTableTitle} />
+                                <IVsSelector position={0} floor={floor} setFloor={setFloor} setTableIcon={setTableIcon} setTableTitle={setTableTitle} />
                             </div>
                             <div className="col-auto mb-1">
-                                <IVsSelector IV={DEF} setIV={setDEF} setTableIcon={setTableIcon} setTableTitle={setTableTitle}/>
+                                <IVsSelector position={1} floor={floor} setFloor={setFloor} setTableIcon={setTableIcon} setTableTitle={setTableTitle}/>
                             </div>
                             <div className="col-auto mb-1">
-                                <IVsSelector IV={HP} setIV={setHP} setTableIcon={setTableIcon} setTableTitle={setTableTitle}/>
+                                <IVsSelector position={2} floor={floor} setFloor={setFloor} setTableIcon={setTableIcon} setTableTitle={setTableTitle}/>
                             </div>
                         </div>
 
@@ -113,7 +109,7 @@ export default function Home() {
                             </div>
                         </div>
                         <div className="row justify-content-center mb-1">
-                            <IVsTable ATK={ATK} DEF={DEF} HP={HP} />
+                            <IVsTable floor={floor} />
                         </div>
                     </div>
                 </div>

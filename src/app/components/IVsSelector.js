@@ -1,5 +1,5 @@
 
-export default function IVsSelector({ IV, setIV, setTableIcon, setTableTitle }) {
+export default function IVsSelector({ position, floor, setFloor, setTableIcon, setTableTitle }) {
 
     let options = []
     for (let i = 0; i <= 15; i++) {
@@ -9,16 +9,18 @@ export default function IVsSelector({ IV, setIV, setTableIcon, setTableTitle }) 
     // Allow user to customize IVs in selector and
     // change table icon and table icon to indicate customization
     function handleChange(e) {
-        setIV(e.target.value);
+        let floorCustom = [floor[0], floor[1], floor[2]];
+        floorCustom[position] = parseInt(e.target.value);
+        setFloor(floorCustom);
         setTableIcon('unownQuestionMark.png');
         setTableTitle('Custom');
     }
     
     return (
-        <label>
-            <select className='form-select' aria-label='IV floor input' value={IV} onChange={handleChange}>
+        <>
+            <select className='form-select' aria-label='IV floor input' value={floor[position]} onChange={handleChange}>
                 {options}
             </select>
-        </label>
+        </>
     )
   }
