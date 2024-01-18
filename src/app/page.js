@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Navbar from './components/Navbar';
 import PresetIVsButton from './components/PresetIVsButton'
-import IVsDropdown from './components/IVsDropdown'
+import IVsSelector from './components/IVsSelector'
 import IVsTable from './components/IVsTable';
 import { useEffect } from 'react';
 
@@ -14,14 +14,32 @@ export default function Home() {
         import("bootstrap/dist/js/bootstrap");
     },[])
 
+    const presetIVs = {
+        wild : {text:'Wild', floor:[0,0,0], icon:'wild.png'},
+        weather : {text:'Wild (Weather Boosted)', floor:[4,4,4], icon:'weather.png'},
+        research : {text:'Research', floor:[10,10,10], icon:'research.png'},
+        egg : {text:'Egg Hatch', floor:[10,10,10], icon:'egg.png'},
+        raid : {text:'Raid (Non-Shadow)', floor:[10,10,10], icon:'raid.png'},
+        shadowRaid : {text:'Shadow Raid', floor:[6,6,6], icon:'shadowRaid.png'},
+        tradeGoodFriends : {text:'Trade (Good Friends)', floor:[1,1,1], icon:'goodFriends.png'},
+        tradeGreatFriends : {text:'Trade (Great Friends)', floor:[2,2,2], icon:'greatFriends.png'},
+        tradeUltraFriends : {text:'Trade (Ultra Friends)', floor:[3,3,3], icon:'ultraFriends.png'},
+        tradeBestFriends : {text:'Trade (Best Friends)', floor:[5,5,5], icon:'bestFriends.png'},
+        tradeLucky : {text:'Trade (Lucky)', floor:[12,12,12], icon:'lucky.png'},
+    }
+
     const [ATK, setATK] = useState(0);
     const [DEF, setDEF] = useState(0);
     const [HP, setHP] = useState(0);
+    const [tableIcon, setTableIcon] = useState('');
+    const [tableTitle, setTableTitle] = useState('');
 
-    function handlePresetIVsButtonClick(ATK, DEF, HP) {
-        setATK(ATK);
-        setDEF(DEF);
-        setHP(HP);
+    function handlePresetIVsButtonClick(presetIV) {
+        setATK(presetIV.floor[0]);
+        setDEF(presetIV.floor[1]);
+        setHP(presetIV.floor[2]);
+        setTableIcon(presetIV.icon);
+        setTableTitle(presetIV.text);
     }
     
     return (
@@ -29,26 +47,73 @@ export default function Home() {
             <Navbar />
             <main>
                 <div>
-                    IV Floor Presets
-                    <PresetIVsButton text={'Wild 0/0/0'} onClick={() => handlePresetIVsButtonClick(0, 0, 0)} />
-                    <PresetIVsButton text={'Wild (Weather Boosted) 4/4/4'} onClick={() => handlePresetIVsButtonClick(4, 4, 4)} />
-                    <PresetIVsButton text={'Research 10/10/10'} onClick={() => handlePresetIVsButtonClick(10, 10, 10)} />
-                    <PresetIVsButton text={'Egg Hatch 10/10/10'} onClick={() => handlePresetIVsButtonClick(10, 10, 10)} />
-                    <PresetIVsButton text={'Non-Shadow Raid 10/10/10'} onClick={() => handlePresetIVsButtonClick(10, 10, 10)} />
-                    <PresetIVsButton text={'Shadow Raid 6/6/6'} onClick={() => handlePresetIVsButtonClick(6, 6, 6)} />
-                    <PresetIVsButton text={'Trade (Good Friends) 1/1/1'} onClick={() => handlePresetIVsButtonClick(1, 1, 1)} />
-                    <PresetIVsButton text={'Trade (Great Friends) 2/2/2'} onClick={() => handlePresetIVsButtonClick(2, 2, 2)} />
-                    <PresetIVsButton text={'Trade (Ultra Friends) 3/3/3'} onClick={() => handlePresetIVsButtonClick(3, 3, 3)} />
-                    <PresetIVsButton text={'Trade (Best Friends) 5/5/5'} onClick={() => handlePresetIVsButtonClick(5, 5, 5)} />
-                    <PresetIVsButton text={'Trade (Lucky Friends) 12/12/12'} onClick={() => handlePresetIVsButtonClick(12, 12, 12)} />
-                </div>
-                <div>
-                    <IVsDropdown IV={ATK} setIV={setATK} />
-                    <IVsDropdown IV={DEF} setIV={setDEF} />
-                    <IVsDropdown IV={HP} setIV={setHP} />
-                </div>
-                <div>
-                    <IVsTable />
+                    <div className="container text-center">
+                        <p className="text-center">How is the Pokemon Encountered?</p>
+                        <div className="row justify-content-md-center mb-1">
+                            <div className="col-md-auto mb-1">
+                                <PresetIVsButton presetIV={presetIVs.wild} onClick={() => handlePresetIVsButtonClick(presetIVs.wild)} />
+                            </div>
+                            <div className="col-md-auto mb-1">
+                                <PresetIVsButton presetIV={presetIVs.weather} onClick={() => handlePresetIVsButtonClick(presetIVs.weather)} />
+                            </div>
+                        </div>
+                        <div className="row justify-content-md-center mb-1">
+                            <div className="col-md-auto mb-1">
+                                <PresetIVsButton presetIV={presetIVs.research} onClick={() => handlePresetIVsButtonClick(presetIVs.research)} />
+                            </div>
+                            <div className="col-md-auto mb-1">
+                                <PresetIVsButton presetIV={presetIVs.egg} onClick={() => handlePresetIVsButtonClick(presetIVs.egg)} />
+                            </div>
+                            <div className="col-md-auto mb-1">
+                                <PresetIVsButton presetIV={presetIVs.raid} onClick={() => handlePresetIVsButtonClick(presetIVs.raid)} />
+                            </div>
+                            <div className="col-md-auto mb-1">
+                                <PresetIVsButton presetIV={presetIVs.shadowRaid} onClick={() => handlePresetIVsButtonClick(presetIVs.shadowRaid)} />
+                            </div>
+                        </div>
+                        <div className="row justify-content-md-center mb-1">
+                            <div className="col-md-auto mb-1">
+                                <PresetIVsButton presetIV={presetIVs.tradeGoodFriends} onClick={() => handlePresetIVsButtonClick(presetIVs.tradeGoodFriends)} />
+                            </div>
+                            <div className="col-md-auto mb-1">
+                                <PresetIVsButton presetIV={presetIVs.tradeGreatFriends} onClick={() => handlePresetIVsButtonClick(presetIVs.tradeGreatFriends)} />
+                            </div>
+                            <div className="col-md-auto mb-1">
+                                <PresetIVsButton presetIV={presetIVs.tradeUltraFriends} onClick={() => handlePresetIVsButtonClick(presetIVs.tradeUltraFriends)} />
+                            </div>
+                            <div className="col-md-auto mb-1">
+                                <PresetIVsButton presetIV={presetIVs.tradeBestFriends} onClick={() => handlePresetIVsButtonClick(presetIVs.tradeBestFriends)} />
+                            </div>
+                            <div className="col-md-auto mb-1">
+                                <PresetIVsButton presetIV={presetIVs.tradeLucky} onClick={() => handlePresetIVsButtonClick(presetIVs.tradeLucky)} />
+                            </div>
+                        </div>
+
+                        <p className="text-center mt-4">IV Floor</p>
+                        <div className="row justify-content-center mb-1">
+                            <div className="col-auto mb-1">
+                                <IVsSelector IV={ATK} setIV={setATK} setTableIcon={setTableIcon} setTableTitle={setTableTitle} />
+                            </div>
+                            <div className="col-auto mb-1">
+                                <IVsSelector IV={DEF} setIV={setDEF} setTableIcon={setTableIcon} setTableTitle={setTableTitle}/>
+                            </div>
+                            <div className="col-auto mb-1">
+                                <IVsSelector IV={HP} setIV={setHP} setTableIcon={setTableIcon} setTableTitle={setTableTitle}/>
+                            </div>
+                        </div>
+
+                        <div className="row justify-content-center mt-2 mb-1">
+                            <div className="col-auto mb-1">
+                                <img src={tableIcon} height='35'/>
+                            </div>
+                            <div className="col-auto mb-1">
+                                <p className="text-center h3">{tableTitle}</p>
+                            </div>
+                        </div>
+                        <div className="row justify-content-center mb-1">
+                            <IVsTable />
+                        </div>
+                    </div>
                 </div>
             </main>
         </>

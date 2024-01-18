@@ -8,8 +8,12 @@ export default function Navbar({  }) {
                     <NavbarBrand name={'Pokemon GO IV Probability Calculator'} />
                     <NavbarToggler target={'navbarSupportedContent'} />
                     <NavbarButtons id={'navbarSupportedContent'} buttons= {[
-                        <a href='https://ko-fi.com/E1E06BU7C' target='_blank' key='kofi' className="ms-auto"><img height='36' src='https://storage.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>,
-                        <a href="https://github.com/Tony120914/pokemon-go-iv-probability-calculator" target='_blank' key='source code' className="btn btn-outline-light ms-auto" role="button" aria-disabled="true">Source Code</a>
+                        <a data-bs-toggle='modal' data-bs-target='#kofi-modal' type='button' target='_blank' key='kofi' className="ms-auto"><img height='44' src='https://storage.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>,
+                        <a href="https://github.com/Tony120914/pokemon-go-iv-probability-calculator" target='_blank' key='source code' className="btn btn-outline-light ms-auto" role="button" aria-disabled="true">
+                            <i className="bi bi-github me-2" style={{'fontSize':'20px'}}></i>
+                            Source Code
+                        </a>,
+                        <KofiModal key='kofi-modal' id={'kofi-modal'}/>
                     ]}/>
                 </div>
             </nav>
@@ -34,8 +38,26 @@ function NavbarToggler({ target }) {
 function NavbarButtons({ id, buttons }) {
     return (
         <div className="collapse navbar-collapse" id={id}>
-            <div className="navbar-nav ms-auto mb-2 mt-2 mb-lg-0 gap-2 user-select-none">
+            <div className="navbar-nav ms-auto mb-2 mt-2 mb-lg-0 gap-3 user-select-none">
                 {buttons}
+            </div>
+        </div>
+    )
+}
+
+function KofiModal({ id }) {
+    return (
+        <div className="modal fade" id={id} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h1 className="modal-title fs-5" id="exampleModalLabel">Thank you!</h1>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div className="modal-body d-flex justify-content-center">
+                        <iframe id='kofiframe' src='https://ko-fi.com/toeknee/?hidefeed=true&widget=true&embed=true&preview=true' height='712' title='toeknee'></iframe>
+                    </div>
+                </div>
             </div>
         </div>
     )
