@@ -55,7 +55,7 @@ function KofiModal({ id }) {
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body d-flex justify-content-center">
-                        <iframe id='kofiframe' src='https://ko-fi.com/toeknee/?hidefeed=true&widget=true&embed=true&preview=true' height='712' title='toeknee'></iframe>
+                        <iframe id='kofiframe' src='https://ko-fi.com/toeknee/?hidefeed=true&widget=true&embed=true&preview=true' loading='lazy' height='712' title='toeknee'></iframe>
                     </div>
                 </div>
             </div>
