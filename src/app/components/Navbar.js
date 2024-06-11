@@ -8,12 +8,8 @@ export default function Navbar({  }) {
                     <NavbarBrand name={'Pokemon GO IV Probability Calculator'} />
                     <NavbarToggler target={'navbarSupportedContent'} />
                     <NavbarButtons id={'navbarSupportedContent'} buttons= {[
-                        <a data-bs-toggle='modal' data-bs-target='#kofi-modal' type='button' target='_blank' key='kofi' className="ms-auto"><img height='44' src='https://storage.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>,
-                        <a href="https://github.com/Tony120914/pokemon-go-iv-probability-calculator" target='_blank' key='source code' className="btn btn-outline-light ms-auto" role="button" aria-disabled="true">
-                            <i className="bi bi-github me-2" style={{'fontSize':'20px'}}></i>
-                            Source Code
-                        </a>,
-                        <KofiModal key='kofi-modal' id={'kofi-modal'}/>
+                        <DonateButton key={'donate'}/>,
+                        <SourceCodeButton key={'sourceCode'}/>
                     ]}/>
                 </div>
             </nav>
@@ -45,6 +41,18 @@ function NavbarButtons({ id, buttons }) {
     )
 }
 
+function DonateButton({}) {
+    return (
+        <>
+            <a data-bs-toggle='modal' data-bs-target='#kofi-modal' type='button' target='_blank' className="btn btn-outline-danger ms-auto" role="button" aria-disabled="true">
+                <i className="bi bi-suit-heart-fill me-2" style={{'fontSize':'20px'}}></i>
+                Donate
+            </a>
+            <KofiModal id={'kofi-modal'}/>
+        </>
+    );
+}
+
 function KofiModal({ id }) {
     return (
         <div className="modal fade" id={id} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -61,4 +69,13 @@ function KofiModal({ id }) {
             </div>
         </div>
     )
+}
+
+function SourceCodeButton({}) {
+    return (
+        <a href="https://github.com/Tony120914/pokemon-go-iv-probability-calculator" target='_blank' className="btn btn-outline-light ms-auto" role="button" aria-disabled="true">
+            <i className="bi bi-github me-2" style={{'fontSize':'20px'}}></i>
+            Source Code
+        </a>
+    );
 }
