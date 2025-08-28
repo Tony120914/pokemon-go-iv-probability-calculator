@@ -1,9 +1,9 @@
 'use client';
 import { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
-import PresetIVsButton from './components/PresetIVsButton'
-import IVsSelector from './components/IVsSelector'
-import IVsTable from './components/IVsTable';
+import Navbar from './app/components/Navbar';
+import PresetIVsButton from './app/components/PresetIVsButton'
+import IVsSelector from './app/components/IVsSelector'
+import IVsTable from './app/components/IVsTable';
 
 
 export default function Home() {
