@@ -16,9 +16,14 @@ export default function Calculator({}) {
         setFloor(preset.floor);
         setTableIcon(preset.icon);
         setTableTitle(preset.text);
-
+        
+        const navBarHeight = document.getElementsByTagName('header')[0]?.offsetHeight;
+        const ivSelector =  document.getElementById(ivFloorId);
+        if (ivSelector) { ivSelector.style.scrollMarginTop = `${navBarHeight}px`;}
         if (window.innerWidth < smallScreenSize) {
-            document.getElementById(ivFloorId)?.scrollIntoView();
+            document.getElementById(ivFloorId)?.scrollIntoView({
+                behavior: 'smooth'
+            });
         }
     }
 
