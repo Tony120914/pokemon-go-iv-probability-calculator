@@ -10,7 +10,7 @@ export default function Support({ }) {
         <header className='sticky-top'>
             <Navbar back={<BackButton to='/'/>} />
         </header>
-        <div className='container-fluid mt-3'>
+        <div className='container mt-3'>
             <main className="text-center">
                 <Gratitude />
                 <Option title={'Donate'} icon={'bi-balloon-heart'}
@@ -27,7 +27,7 @@ export default function Support({ }) {
                         />
                     ]}
                 />
-                <hr className="mx-auto my-4" style={{ width:'80%' }} />
+                <hr className="mx-auto my-4" />
                 <Option title={'Check out my Discord bot!'} icon={'bi-discord'}
                     buttons={[
                         <Button key={'beldum-bot'}

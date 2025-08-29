@@ -1,8 +1,8 @@
+import type { IPreset } from "./IPreset.js";
 
-export default function EncounterSelect ({}) {
-    
+export default function EncounterSelect ({ handleClick }: { handleClick: (preset: IPreset) => void}) {
     const presets = {
-        wild : {text:'Wild', icon:'assets/standard-wild.png', floor:[0,0,0]},
+        wild : {text:'Wild Encounter', icon:'assets/standard-wild.png', floor:[0,0,0]},
         weather : {text:'Wild (Weather Boosted)', icon:'assets/standard-weather.png', floor:[4,4,4]},
         research : {text:'Research', icon:'assets/standard-research.png', floor:[10,10,10]},
         egg : {text:'Egg Hatch', icon:'assets/standard-egg.png', floor:[10,10,10]},
@@ -25,35 +25,35 @@ export default function EncounterSelect ({}) {
         <div className="d-xl-flex justify-content-center text-center gap-2">
             <EncounterColumn title={'Standard'} divideEnd={true}
                 buttons={[
-                    <EncounterButton key={presets.wild.text} preset={presets.wild} onClick={() => {}} />,
-                    <EncounterButton key={presets.weather.text} preset={presets.weather} onClick={() => {}} />,
-                    <EncounterButton key={presets.research.text} preset={presets.research} onClick={() => {}} />,
-                    <EncounterButton key={presets.egg.text} preset={presets.egg} onClick={() => {}} />
+                    <EncounterButton key={presets.wild.text} preset={presets.wild} handleClick={handleClick} />,
+                    <EncounterButton key={presets.weather.text} preset={presets.weather} handleClick={handleClick} />,
+                    <EncounterButton key={presets.research.text} preset={presets.research} handleClick={handleClick} />,
+                    <EncounterButton key={presets.egg.text} preset={presets.egg} handleClick={handleClick} />
                 ]}
             />
             <EncounterColumn title={'Raid'} divideEnd={true}
                 buttons={[
-                    <EncounterButton key={presets.raid.text} preset={presets.raid} onClick={() => {}} />,
-                    <EncounterButton key={presets.raidShadow.text} preset={presets.raidShadow} onClick={() => {}} />
+                    <EncounterButton key={presets.raid.text} preset={presets.raid} handleClick={handleClick} />,
+                    <EncounterButton key={presets.raidShadow.text} preset={presets.raidShadow} handleClick={handleClick} />
                 ]}
             />
 
             <EncounterColumn title={'Battle'} divideEnd={true}
                 buttons={[
-                    <EncounterButton key={presets.rocket.text} preset={presets.rocket} onClick={() => {}} />,
-                    <EncounterButton key={presets.giovanni.text} preset={presets.giovanni} onClick={() => {}} />,
-                    <EncounterButton key={presets.gbl.text} preset={presets.gbl} onClick={() => {}} />,
-                    <EncounterButton key={presets.gblEvent.text} preset={presets.gblEvent} onClick={() => {}} />
+                    <EncounterButton key={presets.rocket.text} preset={presets.rocket} handleClick={handleClick} />,
+                    <EncounterButton key={presets.giovanni.text} preset={presets.giovanni} handleClick={handleClick} />,
+                    <EncounterButton key={presets.gbl.text} preset={presets.gbl} handleClick={handleClick} />,
+                    <EncounterButton key={presets.gblEvent.text} preset={presets.gblEvent} handleClick={handleClick} />
                 ]}
             />
 
             <EncounterColumn title={'Trade'} divideEnd={false}
                 buttons={[
-                    <EncounterButton key={presets.tradeGoodFriends.text} preset={presets.tradeGoodFriends} onClick={() => {}} />,
-                    <EncounterButton key={presets.tradeGreatFriends.text} preset={presets.tradeGreatFriends} onClick={() => {}} />,
-                    <EncounterButton key={presets.tradeUltraFriends.text} preset={presets.tradeUltraFriends} onClick={() => {}} />,
-                    <EncounterButton key={presets.tradeBestFriends.text} preset={presets.tradeBestFriends} onClick={() => {}} />,
-                    <EncounterButton key={presets.tradeLuckyFriends.text} preset={presets.tradeLuckyFriends} onClick={() => {}} />
+                    <EncounterButton key={presets.tradeGoodFriends.text} preset={presets.tradeGoodFriends} handleClick={handleClick} />,
+                    <EncounterButton key={presets.tradeGreatFriends.text} preset={presets.tradeGreatFriends} handleClick={handleClick} />,
+                    <EncounterButton key={presets.tradeUltraFriends.text} preset={presets.tradeUltraFriends} handleClick={handleClick} />,
+                    <EncounterButton key={presets.tradeBestFriends.text} preset={presets.tradeBestFriends} handleClick={handleClick} />,
+                    <EncounterButton key={presets.tradeLuckyFriends.text} preset={presets.tradeLuckyFriends} handleClick={handleClick} />
                 ]}
             />
         </div>
@@ -61,14 +61,9 @@ export default function EncounterSelect ({}) {
     );
 }
 
-interface IPreset {
-    text: string
-    icon: string // path
-    floor: number[] // size 3
-}
-function EncounterButton({ preset, onClick }: { preset: IPreset, onClick: () => void }) {
+function EncounterButton({ preset, handleClick }: { preset: IPreset, handleClick: (preset: IPreset) => void }) {
     return (
-        <button className="btn btn-outline-light" onClick={onClick}>
+        <button className="btn btn-outline-light" onClick={() => handleClick(preset)}>
             <img src={preset.icon} className='me-2' height='25px' />
             {preset.text}
         </button>
