@@ -26,10 +26,18 @@ export default function Calculator({}) {
     },[])
 
     function handleEncounterClick(preset: IPreset) {
-        setFloor(preset.floor);
-        setTableIcon(preset.icon);
-        setTableTitle(preset.text);
-        setSearchParams([[floorParam, `${preset.floor[0]}-${preset.floor[1]}-${preset.floor[2]}`]]);
+        const update = () => {
+            setFloor(preset.floor);
+            setTableIcon(preset.icon);
+            setTableTitle(preset.text);
+            setSearchParams([[floorParam, `${preset.floor[0]}-${preset.floor[1]}-${preset.floor[2]}`]]);
+        }
+        if (!document.startViewTransition) {
+            update();
+        }
+        document.startViewTransition(() => {
+            update();
+        });
         
         // scroll to view if the screen is too small
         const navBarHeight = document.getElementsByTagName('header')[0]?.offsetHeight;
@@ -45,10 +53,19 @@ export default function Calculator({}) {
     function handleCustomChange(e: React.ChangeEvent<HTMLSelectElement>, position: number) {
         const customFloor = floor.slice();
         customFloor[position] = parseInt(e.target.value);
-        setFloor(customFloor);
-        setTableIcon('assets/unown-question-mark.png');
-        setTableTitle('Custom');
-        setSearchParams([[floorParam, `${customFloor[0]}-${customFloor[1]}-${customFloor[2]}`]]);
+
+        const update = () => {
+            setFloor(customFloor);
+            setTableIcon('assets/unown-question-mark.png');
+            setTableTitle('Custom');
+            setSearchParams([[floorParam, `${customFloor[0]}-${customFloor[1]}-${customFloor[2]}`]]);
+        }
+        if (!document.startViewTransition) {
+            update();
+        }
+        document.startViewTransition(() => {
+            update();
+        });
     }
 
     return (
