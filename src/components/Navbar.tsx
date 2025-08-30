@@ -35,7 +35,7 @@ function Brand({ image, name }: { image: string, name: string}) {
     return (
     <NavLink to='/' end onClick={() => window.scrollTo({top:0, behavior:'smooth'}) } style={{ textDecoration:'none' }} viewTransition>
         <span className="navbar-brand user-select-none d-flex align-items-center">
-            <img src={image} width="40" height="40" className='.d-inline-block mx-2'/>
+            <img src={image} width="40px" height="40px" className='.d-inline-block mx-2'/>
             {name}
         </span>
     </NavLink>

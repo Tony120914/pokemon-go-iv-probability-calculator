@@ -78,7 +78,7 @@ export default function ProbabilityTable({ icon, title, floor }: { icon: string,
 
         const stars = [];
         for (let i = 0; i < appraisal; i++) {
-            stars.push(<img src='assets/appraisal-star.png' key={i+1} height='20' />);
+            stars.push(<img src='assets/appraisal-star.png' key={i+1} height='20px' />);
         }
         return stars;
     }
@@ -117,7 +117,7 @@ function TableTitle ({ icon, title }: { icon: string, title: string }) {
     return (
     <div className='d-sm-flex justify-content-center gap-3 mt-3 '>
         {icon ? <img src={icon} height='50px' ></img> : null}
-        <h1 className='display-6'>{title}</h1>
+        <h1 className='display-6 text-nowrap'>{title}</h1>
     </div>
     );
 }
