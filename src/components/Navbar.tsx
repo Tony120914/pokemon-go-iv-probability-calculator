@@ -1,10 +1,10 @@
 import type React from "react"
 import { NavLink } from "react-router"
 
-interface NavBarI {
-    back?: React.ReactElement;
+interface NavbarProps {
+    backButton?: React.ReactElement;
 }
-export default function Navbar( { back: backButton }: NavBarI ) {
+export default function Navbar( { backButton }: NavbarProps ) {
     return (
     <>
         <nav className="navbar navbar-expand-md bg-dark-subtle">
@@ -33,10 +33,10 @@ export default function Navbar( { back: backButton }: NavBarI ) {
 
 function Brand({ image, name }: { image: string, name: string}) {
     return (
-    <NavLink to='/' end onClick={() => window.scrollTo({top:0, behavior:'smooth'}) } style={{ textDecoration:'none' }} viewTransition>
+    <NavLink to='/' end onClick={() => window.scrollTo({top:0, behavior:'smooth'}) } style={{ textDecoration:'none' }} viewTransition className='col col-sm-auto'>
         <span className="navbar-brand user-select-none d-flex align-items-center">
             <img src={image} width="40px" height="40px" className='.d-inline-block mx-2'/>
-            {name}
+            <span className="text-wrap">{name}</span>
         </span>
     </NavLink>
     )

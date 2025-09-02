@@ -8,12 +8,12 @@ export default function Support({ }) {
     return (
     <>
         <header className='sticky-top'>
-            <Navbar back={<BackButton to='/'/>} />
+            <Navbar backButton={<BackButton to='/'/>} />
         </header>
         <div className='container mt-3'>
             <main className="text-center">
                 <Gratitude />
-                <Option title={'Donate'} icon={'bi-balloon-heart'}
+                <Option title={'Donate'} icon={'bi-heart'}
                     buttons={[
                         <Button key={'patreon'}
                             url={'https://patreon.com/ToekneeL'}
